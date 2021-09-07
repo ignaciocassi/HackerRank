@@ -1,6 +1,8 @@
 import java.text.NumberFormat;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 //import java.util.regex.*;
 import java.util.List;
 import java.util.Locale;
@@ -125,15 +127,54 @@ public class Excercices {
     }
 
     public static int hourglassSum(List<List<Integer>> arr) {
-        int largestSum = 0;
+        int largestHourglass = Integer.MIN_VALUE;
         int totalHgs = 0;
-        int i=0;
-        int j=0;
-        while (i<=3) {
-            while (j<=3) {
-                continue;
+        for (int i=0; i<=3; i++) {
+            for (int j=0; j<=3; j++) {
+                int f = i;
+                int c = j;
+                int currentHourglass = 0;
+                while (c<=j+2) {
+                    currentHourglass = currentHourglass + arr.get(f).get(c);
+                    c++;
+                }
+                c=c-2;
+                f++;
+                currentHourglass = currentHourglass + arr.get(f).get(c);
+                c--;
+                f++;
+                while (c<=j+2) {
+                    currentHourglass = currentHourglass + arr.get(f).get(c);
+                    c++;
+                }
+                if (currentHourglass>largestHourglass) {
+                    largestHourglass=currentHourglass;
+                }
+                totalHgs++;
             }
         }
-        return largestSum;
+        return largestHourglass;
+    }
+
+    public static void plusMinus(List<Integer> arr) {
+        float totalPositives = 0;
+        float totalNegatives = 0;
+        float totalZeros = 0;
+        float total = arr.size();
+
+        Iterator<Integer> iterator = arr.iterator();
+        while (iterator.hasNext()) {
+            Integer item = iterator.next();
+            if (item.intValue()>0) totalPositives++;
+            if (item.intValue()<0) totalNegatives++;
+            if (item.intValue()==0) totalZeros++;
+        }
+
+        float positivesRatio = totalPositives/total;
+        float negativesRatio = totalNegatives/total;
+        float zerosRatio = totalZeros/total;
+        System.out.println(String.format("%.6f", positivesRatio));
+        System.out.println(String.format("%.6f", negativesRatio));
+        System.out.println(String.format("%.6f", zerosRatio));
     }
 }
