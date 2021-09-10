@@ -1,9 +1,10 @@
 import java.text.NumberFormat;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
-//import java.util.regex.*;
+import java.util.regex.*;
 import java.util.List;
 import java.util.Locale;
 
@@ -128,7 +129,6 @@ public class Excercices {
 
     public static int hourglassSum(List<List<Integer>> arr) {
         int largestHourglass = Integer.MIN_VALUE;
-        int totalHgs = 0;
         for (int i=0; i<=3; i++) {
             for (int j=0; j<=3; j++) {
                 int f = i;
@@ -150,16 +150,13 @@ public class Excercices {
                 if (currentHourglass>largestHourglass) {
                     largestHourglass=currentHourglass;
                 }
-                totalHgs++;
             }
         }
         return largestHourglass;
     }
 
     public static void plusMinus(List<Integer> arr) {
-        float totalPositives = 0;
-        float totalNegatives = 0;
-        float totalZeros = 0;
+        float totalPositives=0, totalNegatives=0, totalZeros=0;
         float total = arr.size();
 
         Iterator<Integer> iterator = arr.iterator();
@@ -170,11 +167,43 @@ public class Excercices {
             if (item.intValue()==0) totalZeros++;
         }
 
-        float positivesRatio = totalPositives/total;
-        float negativesRatio = totalNegatives/total;
-        float zerosRatio = totalZeros/total;
-        System.out.println(String.format("%.6f", positivesRatio));
-        System.out.println(String.format("%.6f", negativesRatio));
-        System.out.println(String.format("%.6f", zerosRatio));
+        System.out.println(String.format("%.6f", totalNegatives/total)+"\n"+String.format("%.6f",totalPositives/total)+"\n"+String.format("%.6f", totalZeros/total));
     }
+
+    public static void staircase(int n) {
+        char[] steps = new char[n];
+        for (int step=n-1; step>=0; step--) {
+            steps[step]=' ';
+        }
+        for (int step=n-1; step>=0; step--) {
+            steps[step]='#';
+            System.out.println(steps);
+        }
+    }
+
+    public static MiniMax getMiniMaxSum(int[] arr) {
+        System.out.println("The source array of numbers is: "+Arrays.toString(arr));
+        MiniMax result = new MiniMax();
+        for (int jump=arr.length-1; jump>=0; jump--) {
+            int sum=0;
+            for (int i=0; i<=arr.length-1; i++) {
+                if (i!=jump) sum=sum+arr[i];
+            }
+            if (sum<result.getMini()) {
+                result.setMini(sum);
+            }
+            if (sum>result.getMax()) {
+                result.setMax(sum);
+            }
+        }
+        return result;
+    }
+
+    public static int birthdayCakeCandles(List<Integer> candles) {
+        int tallestAmount = 0;
+        int tallest = Collections.max(candles);
+        for (Integer candle: candles) if (candle.equals(tallest)) tallestAmount++;
+        return tallestAmount;
+    }
+
 }
