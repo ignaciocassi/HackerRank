@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
+import java.math.BigInteger;
 import java.util.regex.*;
 import java.util.List;
 import java.util.Locale;
@@ -206,4 +207,65 @@ public class Excercices {
         return tallestAmount;
     }
 
+    public static long repeatedString(String s, long n) {
+        Long sLength = Long.valueOf(s.length());
+        char[] chars = s.toCharArray();
+        Long totalAs = 0L;
+        Long sTotalA = 0L;
+        for (char charact: chars) {
+            if (charact=='a') sTotalA++;
+        }
+        Long timesEnters = n/sLength;
+        Long rest = n%sLength;
+        long aEnResto;
+        if (rest!=0) {
+            aEnResto = calcularAEnResto(rest, chars);
+        } else {
+            aEnResto=0;
+        }
+        totalAs = (sTotalA*timesEnters)+aEnResto;
+        return totalAs;
+    }
+
+    private static long calcularAEnResto(long r, char[] chars) {
+        long restAs = 0;
+        for (int i=0; i<r; i++) {
+            if (chars[i]=='a') restAs++;
+        }
+        return restAs;
+    }
+
+
+	
+    /** 
+     * @param word: The String to be tested if is a palindrome.
+     * @return Boolean: True if word is palindrome, False if word is not palindrome, null if word is invalid length (0-50).
+     */
+    public static Boolean isWordPalindrome(String word) {
+        Boolean isPalindrome = true;
+        if (word.length()>0 && word.length()<=50) {
+            char[] characters = word.toCharArray();
+            int half = characters.length/2;
+            int last = characters.length-1;
+            for (int first=0; first<half; first++) {
+                if (characters[first]!=characters[last]) {
+                    isPalindrome = false;
+                    break;
+                }
+                last--;
+            }
+        } else {
+            System.out.println("Word length must be between 0-50.");
+            isPalindrome = null;
+        }
+		return isPalindrome;
+	}
+
+	public static void bigIntegers(BigInteger a, BigInteger b) {
+        BigInteger multiplication = a.multiply(b);
+        BigInteger addition = a.add(b);
+        System.out.println(addition);
+        System.out.println(multiplication);
+	}
 }
+

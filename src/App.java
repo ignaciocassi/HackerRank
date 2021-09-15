@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +9,10 @@ public class App {
         //runPlusMinus();
         //runStaircase();
         //runMiniMaxSum();
-        runBirthdayCakeCandles();
+        //runBirthdayCakeCandles();
+        //runRepeatedString();
+        //runIsWordPalindrome();
+        runBigIntegers();
     }
 
     private static void runStaircase() {
@@ -50,6 +54,21 @@ public class App {
         List<Integer> candles = new ArrayList<>();
         candles=Arrays.asList(1,2,5,4,5);
         System.out.println(Excercices.birthdayCakeCandles(candles));
+    }
+
+    public static void runRepeatedString() {
+        System.out.println(Excercices.repeatedString("aba", 10));
+    }
+
+    public static void runIsWordPalindrome() {
+        String word = "abcba";
+        System.out.println(Excercices.isWordPalindrome(word));
+    }
+
+    public static void runBigIntegers() {
+        BigInteger a = new BigInteger("1234");
+        BigInteger b = new BigInteger("20");
+        Excercices.bigIntegers(a,b);
     }
 
 }
