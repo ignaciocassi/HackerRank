@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.regex.*;
 import java.util.List;
@@ -267,5 +268,21 @@ public class Excercices {
         System.out.println(addition);
         System.out.println(multiplication);
 	}
+
+    public static void bigDecimal(String[] s, int n) {
+        for(int i=1; i<n ; i++){
+            for(int j=i; j>=1; j--){
+
+                if(new BigDecimal(s[j]).compareTo(new BigDecimal(s[j-1]))>0){   
+                    String temp = s[j];
+                    s[j] = s[j-1];
+                    s[j-1] = temp;
+                    
+                }else{
+                    break;
+                }
+            }  
+        }
+    }
 }
 

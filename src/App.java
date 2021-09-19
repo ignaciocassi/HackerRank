@@ -12,7 +12,8 @@ public class App {
         //runBirthdayCakeCandles();
         //runRepeatedString();
         //runIsWordPalindrome();
-        runBigIntegers();
+        //runBigIntegers();
+        runBigDecimal();
     }
 
     private static void runStaircase() {
@@ -69,6 +70,17 @@ public class App {
         BigInteger a = new BigInteger("1234");
         BigInteger b = new BigInteger("20");
         Excercices.bigIntegers(a,b);
+    }
+
+    public static void runBigDecimal() {
+        int n = 9;
+        String[] s = {"-100","50","0","56.6","90","0.12",".12","02.34","000.000"};
+        Excercices.bigDecimal(s,n);
+        showArray(s);
+    }
+
+    private static void showArray(String[] s) {
+        for (String data: s) System.out.println(data);
     }
 
 }
