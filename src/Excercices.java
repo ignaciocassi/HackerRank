@@ -1,3 +1,4 @@
+import java.text.Format;
 import java.text.NumberFormat;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -284,5 +285,94 @@ public class Excercices {
             }  
         }
     }
+
+    public static String timeConversionv2(String s) {
+        //"12:00:00AM"-> "00:00:00"
+        //"01:00:00AM"-> "01:00:00"
+        //"12:00:00PM"-> "12:00:00"
+        //"01:00:00PM"-> "13:00:00"
+        String hourStr = s.substring(0,2);
+        String restStr = s.substring(2);
+        String period = s.substring(8);
+        String output = "";
+        int hour = Integer.valueOf(hourStr);
+        if (hourStr.equals("12") && period.equals("AM")) {
+            //Substract 12 from hourStr
+            //Remove period from output
+            //Format hrs from "0" to "00"
+            hour -= 12;
+            hourStr = "0"+Integer.toString(hour);
+            output = hourStr+restStr.replace("AM", "");
+        } else if (!hourStr.equals("12") && period.equals("AM")) {
+            //Remove "AM"
+            output = s.replace("AM","");
+        } else if (hourStr.equals("12") && period.equals("PM")) {
+            //Remove "PM"
+            output = s.replace("PM","");
+        } else if (!hourStr.equals("12") && period.equals("PM")) {
+            //Add 12 to hour
+            //Remove "PM"
+            hour += 12;
+            hourStr = Integer.toString(hour);
+            output = hourStr + restStr.replace("PM", "");
+        } else {
+            System.out.println("Invalid time");
+        }
+        return output;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static String timeConversion(String s) {
+        String output = "";
+        if (isAfternoon(s)) {
+            output = PMto24format(s);
+        } else {
+            output = AMto24format(s);
+        }
+        return output;
+    }
+    
+    public static boolean isAfternoon(String s) {
+        boolean isAfternoon = false;
+        String data = s.substring(8);
+        if (data.equals("AM")) isAfternoon = false;
+        if (data.equals("PM")) isAfternoon = true;
+        return isAfternoon;
+    }
+    
+    public static String PMto24format(String s) {
+        String hourString = s.substring(0,2);
+        String restString = s.substring(2);
+        restString = restString.replace("PM","");
+        int hour = Integer.valueOf(hourString);
+        if (hour!=12) hour = hour+12;
+        return Integer.toString(hour)+restString;
+    }
+    
+    public static String AMto24format(String s) {
+        String hourString = s.substring(0,2);
+        String restString = s.substring(2);
+        restString = restString.replace("AM","");
+        int hour = Integer.valueOf(hourString);
+        if (hour>=12) hour = hour - 12;
+        hourString = Integer.toString(hour);
+        if (Integer.valueOf(hourString)<12) hourString = "0"+hourString;
+        return hourString+restString;
+    }
+
 }
 

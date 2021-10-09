@@ -13,7 +13,25 @@ public class App {
         //runRepeatedString();
         //runIsWordPalindrome();
         //runBigIntegers();
-        runBigDecimal();
+        //runBigDecimal();
+        //runTimeConversion();
+        runTimeConversionv2();
+    }
+
+    public static void runTimeConversionv2() {
+        //"12:00:00AM"-> "00:00:00"
+        //"01:00:00AM"-> "01:00:00"
+        //"12:00:00PM"-> "12:00:00"
+        //"01:00:00PM"-> "13:00:00"
+        //System.out.println(Excercices.timeConversionv2("12:00:00AM"));
+        //System.out.println(Excercices.timeConversionv2("01:00:00AM"));
+        //System.out.println(Excercices.timeConversionv2("12:00:00PM"));
+        //System.out.println(Excercices.timeConversionv2("02:00:00PM"));
+    }
+
+    private static void runTimeConversion() {
+        String s = "12:45:54PM";
+        System.out.println(Excercices.timeConversion(s));
     }
 
     private static void runStaircase() {
